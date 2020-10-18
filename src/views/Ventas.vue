@@ -1,22 +1,34 @@
 <template>
-    <h1>Ventas</h1>
+    <div>
+        <h1>Ventas</h1>
+        <div class="tabla">
+            <lista-venta :juegos="juegosConStock"></lista-venta>
+        </div>
+    </div>
 </template>
 
 <script>
+import {mapGetters, mapState} from 'vuex';
+import ListaVentas from '@/components/ListaVentas.vue'
 export default {
     name: 'ventas-vista',
     // props: {},
     data: function(){
         return {}
     },
-    // computed: {},
+    computed: {
+        ...mapState(['juegos']),
+        ...mapGetters(['totalJuegos', 'juegosConStock', 'sumaStockTotal']),
+    },
     methods: {
         // -- Metodos
     },
-    //components: {},
+    components: {
+        'lista-venta':ListaVentas,
+    },
 }
 </script>
 
 <style scoped>
-    
+
 </style>
