@@ -7,6 +7,7 @@ const store = new Vuex.Store({
   state: {
     titulo:'32 Bits',
     subtitulo: 'Juegos de PC y Consolas',
+    notfound: 'La página que busca no está disponible',
     juegos:[
       {
         id: "0001",
