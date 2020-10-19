@@ -61,7 +61,6 @@ export default {
         border-color:black;
         border-style:solid;
         border-width:1px;
-        font-family:Arial, sans-serif;
         font-size:16px;
         overflow:hidden;
         padding:10px 5px;
@@ -72,7 +71,6 @@ export default {
         border-color:black;
         border-style:solid;
         border-width:1px;
-        font-family:Arial, sans-serif;
         font-size:16px;
         font-weight:normal;
         overflow:hidden;

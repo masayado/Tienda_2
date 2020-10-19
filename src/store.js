@@ -59,6 +59,8 @@ const store = new Vuex.Store({
       },
     ],
     ventas:[],
+    totalVentas:[],
+    suma:"",
   },
   getters: {
     totalJuegos: state =>{
@@ -74,7 +76,10 @@ const store = new Vuex.Store({
     },
     sumaStockTotal: state=>{
       return state.juegos.reduce((acc, juego) => acc += parseInt(juego.stock),0)
-     },
+    },
+    sumaVentasTotal: state=>{
+      return state.totalVentas.reduce((a,b)=>a+b)
+    }
   },
   mutations: {
     venderJuego:(state, juego_id)=>{
@@ -83,34 +88,55 @@ const store = new Vuex.Store({
           juego.stock--
         }
       })
+    },
+    registrarVenta:(state, juego)=>{
+      state.ventas.push({
+        id:juego.id,
+        nombre:juego.nombre,
+        stock:juego.stock,
+        precio:juego.precio,
+      }),
+      state.totalVentas.push(
+        parseInt(juego.precio)
+      )
     }
   },
   actions: {
-    procesarVenta({commit, state}, juego_id){
-      return new Promise((resolve, reject)=>{
+    ProcesarVenta({commit,state}, juego_id){
+      return new Promise((resolve,reject)=>{
         setTimeout(() => {
-          let venta_existosa = false
+          let venta_exitosa = false
           state.juegos.forEach(juego=>{
-            if(juego.id === juego_id){
-              //llamo a la mutacion
-              commit('venderJuego', juego_id)
-              let venta_existosa = true
-            }
-          })
-          if(venta_exitosa){
-            resolve();
+          if(juego.id === juego_id){
+            //llamo a mutacion
+            commit('venderJuego', juego_id)
+            venta_exitosa= true
           }
-          else{
-            reject
-          }
+        })
+        if(venta_exitosa){
+          resolve()
+        }
+        else{
+          reject()
+        }
         }, 2000);
-
+        
+      })
+    },
+    registrarVenta({commit}, juego){
+      return new Promise((resolve)=>{
+        setTimeout(() => {
+          commit('registrarVenta', juego)
+          resolve()
+        }, 1000);
       })
     },
     async vender({dispatch},juego){
       try {
-        await dispatch('procesarVenta', juego.id)
-        alert("Venta procesada")
+        await dispatch('ProcesarVenta', juego.id)
+        await dispatch('registrarVenta', juego)
+        alert("venta procesada");
+
       } catch (error) {
         console.log(error);
       }
