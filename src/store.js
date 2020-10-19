@@ -108,7 +108,7 @@ const store = new Vuex.Store({
           let venta_exitosa = false
           state.juegos.forEach(juego=>{
           if(juego.id === juego_id){
-            //llamo a mutacion
+            //llamo a la mutacion
             commit('venderJuego', juego_id)
             venta_exitosa= true
           }

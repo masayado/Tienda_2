@@ -1,14 +1,19 @@
 <template>
 <div>
-    <div class="ventasregistradas">
     <h1>Total Ventas</h1>
-    Ventas registradas: {{ventasRealizadas}}
+    <p>Ventas registradas: {{ventasRealizadas}}</p>
+    
+    <div class="lista_ventas">
+        <ventas-total :ventas="ventas" :sumaVentasTotal="sumaVentasTotal"></ventas-total>
     </div>
+
+    <p>Suma total de ventas: ${{sumaVentasTotal}}</p>
 </div>
 </template>
 
 <script>
 import {mapState, mapGetters, mapActions} from 'vuex'
+import VentasTotal from '@/components/VentasTotal.vue'
 export default {
     name: 'totalvista',
     // props: {},
@@ -23,14 +28,22 @@ export default {
         ...mapActions(['registrarVenta']),
     },
     components: {
+        'ventas-total':VentasTotal,
     },
 }
 </script>
 
 <style scoped>
 
-.ventasregistradas{
+.lista_ventas{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: left;
+}
+
+h1, p{
     text-align:center;
 }
-    
+
 </style>
