@@ -69,11 +69,6 @@ const store = new Vuex.Store({
         return juego.stock > 0
       })
     },
-    juegoDisponiblePorId: (state, getters) => (id)=>{
-      return getters.juegosConStock.filter((juego)=>{
-      return juego.id == id
-      })
-      },
     ventasRealizadas: state=>{
       return state.ventas.length
     },
@@ -81,8 +76,46 @@ const store = new Vuex.Store({
       return state.juegos.reduce((acc, juego) => acc += parseInt(juego.stock),0)
      },
   },
-  mutations: {},
-  actions: {}
+  mutations: {
+    venderJuego:(state, juego_id)=>{
+      state.juegos.forEach((juego)=>{
+        if(juego.id === juego_id){
+          juego.stock--
+        }
+      })
+    }
+  },
+  actions: {
+    procesarVenta({commit, state}, juego_id){
+      return new Promise((resolve, reject)=>{
+        setTimeout(() => {
+          let venta_existosa = false
+          state.juegos.forEach(juego=>{
+            if(juego.id === juego_id){
+              //llamo a la mutacion
+              commit('venderJuego', juego_id)
+              let venta_existosa = true
+            }
+          })
+          if(venta_exitosa){
+            resolve();
+          }
+          else{
+            reject
+          }
+        }, 2000);
+
+      })
+    },
+    async vender({dispatch},juego){
+      try {
+        await dispatch('procesarVenta', juego.id)
+        alert("Venta procesada")
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 });
 
 export default store;

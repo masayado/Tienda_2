@@ -16,7 +16,7 @@
                     <td class="tg-0pky" :style="{background: juego.color}">{{juego.nombre}}</td>
                     <td class="tg-0pky" :style="{background: juego.color}">{{juego.stock}}</td>
                     <td class="tg-0pky" :style="{background: juego.color}">{{juego.precio}}</td>
-                    <td class="tg-0pky" :style="{background: juego.color}"><button>Vender</button></td>
+                    <td class="tg-0pky" :style="{background: juego.color}"><button @click="vender(juego)">Vender</button></td>
                 </tr>
             </tbody>
         </table>
@@ -24,8 +24,9 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
-    name: 'component-name',
+    name: 'listaventas-component',
     props: {
         juegos:{
             type:Array,
@@ -37,7 +38,7 @@ export default {
     },
     // computed: {},
     methods: {
-        // -- Metodos
+        ...mapActions(['vender'])
     },
     //components: {},
 }

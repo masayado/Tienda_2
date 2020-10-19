@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>Ventas</h1>
+        <p><b>Cantidad de juegos con Stock:</b> {{totalJuegos}}</p>
         <div class="tabla">
             <lista-venta :juegos="juegosConStock"></lista-venta>
         </div>
@@ -30,5 +31,7 @@ export default {
 </script>
 
 <style scoped>
-
+p{
+    text-align:center;
+}
 </style>

@@ -7,7 +7,7 @@
         <router-link :to="{name: 'inicio'}">Inicio</router-link>
         <router-link :to="{name: 'busquedas'}">Búsquedas</router-link>
         <router-link :to="{name: 'ventas'}">Ventas</router-link>
-        <router-link :to="{name: 'total'}">Total</router-link>
+        <router-link :to="{name: 'total'}">Total Ventas</router-link>
     </nav>
     <transition name="vista">
       <router-view></router-view>
