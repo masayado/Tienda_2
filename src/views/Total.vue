@@ -7,7 +7,7 @@
         <ventas-total :ventas="ventas" :sumaVentasTotal="sumaVentasTotal"></ventas-total>
     </div>
 
-    <p>Suma total de ventas: ${{sumaVentasTotal}}</p>
+    <p>Monto total de ventas: ${{sumaVentasTotal}}</p>
 </div>
 </template>
 

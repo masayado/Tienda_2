@@ -10,9 +10,9 @@
             </thead>
             <tbody>
             <tr v-for="venta in ventas" key="venta.id">
-                <td class="tg-0pky" :style="{background: venta.color}">{{venta.id}}</td>
-                <td class="tg-0pky" :style="{background: venta.color}">{{venta.nombre}}</td>
-                <td class="tg-0pky" :style="{background: venta.color}">{{venta.precio}}</td>
+                <td class="tg-0pky">{{venta.id}}</td>
+                <td class="tg-0pky">{{venta.nombre}}</td>
+                <td class="tg-0pky">{{venta.precio}}</td>
             </tr>
             </tbody>
         </table>
